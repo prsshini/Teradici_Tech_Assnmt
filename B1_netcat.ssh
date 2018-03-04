@@ -1,0 +1,12 @@
+#!/bin/bash
+
+##Write a script that accepts a remote host and a series of ports or port ranges (e.g. 5000, or 5000-
+##5200). Use netcat to scan for connectivity to each port or port range and report the results.
+
+
+##usage: ./B1_netcat.ssh <hostname> <Port/Portrange>	
+##usage: ./B1_netcat.ssh google.com 443
+
+nc -z -vv "$1" "$2" >out.txt 2>&1
+
+cat out.txt

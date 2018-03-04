@@ -1,0 +1,43 @@
+﻿#!/bin/bash
+
+#Write a script with a function that accepts a string to insert, a line number and filename. The
+#3function should open the file and insert the string at the first occurrence of line_number and all
+##increments of line_number until the end of the file is reached. e.g. if line_number is 5, lines 5, 10,
+###15, etc. should be modified until EOF is reached.****/
+
+#usage: ./B3_insertstr.ssh <filename> <Line number> <Insert Str>
+
+
+
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] 
+then
+echo "Invalid Arguments"
+echo $1 $2 $3
+fi
+
+file=$1
+linenmbr=$2
+repstr=$3
+
+if [ ! -f "$file" ];
+then
+echo "File does not exist"
+exit 1
+elif [ ! -w "$file" ];
+then
+echo "File is not writable"
+exit 1
+fi
+
+if [[ $linenmbr =~ ^\+?[0-9]+.?[0]+$ ]]; 
+then
+echo "line_number is NOT a valid interger. Exiting.."
+exit 1
+fi
+
+sed -i "0~$linenbr i $repstr" $file
+status=$?
+if [ $status -eq 0 ];
+then echo "String replaced Successfully..."
+fi
+exit $status

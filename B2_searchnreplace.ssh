@@ -1,0 +1,60 @@
+#!/bin/bash
+
+###Write a script that accepts a filename, a regular expression and a replacement string. This script
+###will replace all occurrences of the regular expression with the replacement string inside the file
+####and return the modified content as a string.
+
+### USAGE: ./B2_searchnreplace.ssh <filename> <searchStr> <ReplacementStr>
+
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] 
+
+then
+
+echo "Invalid Arguments"
+
+echo $1 $2 $3
+
+fi
+
+
+
+file=$1
+
+srchstr=$2
+
+repstr=$3
+
+
+
+if [ ! -f "$file" ];
+
+then
+
+echo "File doesnot exist.."
+
+exit 1
+
+elif [ ! -w "$file" ];
+
+then
+
+echo "Cannot write into the file. Please fix permissions.."
+exit 1
+
+fi
+
+
+
+sed -i '.bak' "s/$srchstr/$repstr/g" $file
+
+status=$?
+
+if [ $status -eq 0 ];
+
+then
+
+echo "Search and replace Successfull"
+
+fi
+
+exit $status
