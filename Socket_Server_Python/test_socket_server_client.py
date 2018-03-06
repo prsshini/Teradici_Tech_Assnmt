@@ -19,15 +19,11 @@ def client(port, request):
     # create a socket object
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = socket.gethostname()
-
-    # connection to hostname on the port.
     try:
         s.connect((host, port))
     except socket.error as msg:
-#        print 'Failed to Connect ' + str(msg[0]) + ' Message ' + msg[1]
         return -1
-
-    # Receive no more than 1024
+      
     s.senda (request.encode('ascii'))
     resp = s.recv(1024).decode('ascii').rstrip("\n")
     s.close()
