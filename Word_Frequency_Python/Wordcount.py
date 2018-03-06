@@ -3,18 +3,18 @@ import re
 from collections import Counter
 
 def usage():
-  print 'Usage: '+sys.argv[0]+' -f <file1>'
+  print ('Usage: '+sys.argv[0]+' -f <file>')
   sys.exit(1)
 
 
-def main(argv):
+def wordcnt(argv):
     try:
         opts, args = getopt.getopt(argv, 'hf:', ['help', 'file'])
         if not opts:
-            print 'No parameters supplied'
+            print ('No parameters supplied')
             usage()
-    except getopt.GetoptError, e:
-        print e
+    except getopt.GetoptError as e:
+        print (e)
         usage()
         sys.exit(2)
     for opt, arg in opts:
@@ -22,7 +22,7 @@ def main(argv):
             usage()
         elif opt == '-f':
             fIn = argv[1]
-            print fIn
+            print (fIn)
 
 
     try:
@@ -47,4 +47,4 @@ def main(argv):
     print (topten)
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    wordcnt(sys.argv[1:])
